@@ -1,4 +1,6 @@
 #!/usr/bin/with-contenv /bin/bash
+test -f /env && source /env
+test -f /env && export $(cut -d= -f1 /env)
 echo 'Starting netdiscover'
 exec python3 /netdiscover.py
 
