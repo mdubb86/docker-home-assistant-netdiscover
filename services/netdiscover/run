@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv /bin/bash
+echo 'Starting netdiscover'
+exec python3 /netdiscover.py
+
+
+
