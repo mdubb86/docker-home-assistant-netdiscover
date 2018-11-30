@@ -40,7 +40,7 @@ def output_reader(proc, monitored):
                 if count > prev:
                     seen[mac] = count
                     post_update(mac, monitored[mac])
-                    print('Saw', monitored[mac], '(' + mac + ')')
+                    print('Saw', monitored[mac], '(' + mac + ')', flush=True)
 
 if __name__ == "__main__":
     res = get_request('/api/states/group.all_devices')
@@ -54,10 +54,10 @@ if __name__ == "__main__":
         else:
             print('Ignoring', device_id, '- no mac specified in attributes')
 
-    print('Monitoring', len(monitored), 'mac addresses:', monitored)
+    print('Monitoring', len(monitored), 'mac addresses:', monitored, flush=True)
     proc = subprocess.Popen(['netdiscover', '-i', 'enp32s0', '-p'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     t = threading.Thread(target=output_reader, args=(proc, monitored))
     t.start()
-    print('Started netdiscover process')
+    print('Started netdiscover process', flush=True)
     t.join()
 
