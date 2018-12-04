@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y \
   python3 \
   python3-pip \
   netdiscover && \
-  pip3 install requests
+  pip3 install requests 
 
 # Set the entry point
 ENTRYPOINT ["/init"]

@@ -55,7 +55,7 @@ if __name__ == "__main__":
             print('Ignoring', device_id, '- no mac specified in attributes')
 
     print('Monitoring', len(monitored), 'mac addresses:', monitored, flush=True)
-    proc = subprocess.Popen(['netdiscover', '-i', 'enp32s0', '-p'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    proc = subprocess.Popen(['netdiscover', '-i', os.environ['interface'], '-p'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     t = threading.Thread(target=output_reader, args=(proc, monitored))
     t.start()
     print('Started netdiscover process', flush=True)
